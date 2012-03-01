@@ -17,13 +17,13 @@ module AuthpdsNyu
 
       # Default aleph ADM
       def aleph_default_adm(value = nil)
-        rw_config(:aleph_default_adm, value)
+        rw_config(:aleph_default_adm, value, "NYU50")
       end
       alias_method :aleph_default_adm=, :aleph_default_adm
 
       # Default aleph sublibrary
       def aleph_default_sublibrary(value = nil)
-        rw_config(:aleph_default_sub_library, value)
+        rw_config(:aleph_default_sub_library, value, "BOBST")
       end
       alias_method :aleph_default_sub_library=, :aleph_default_sub_library
     end
@@ -45,6 +45,25 @@ module AuthpdsNyu
     end
     
     module InstanceMethods
+      def self.included(klass)
+        klass.class_eval do
+          pds_attributes :id => "id", :uid => "uid", 
+            :opensso => "opensso", :name => "name", :firstname => "givenname", 
+            :lastname => "sn", :commonname => "cn", :email => "email",
+            :nyuidn => "nyuidn", :verification => "verification", :institute => "institute",
+            :bor_status => "bor-status", :bor_type => "bor-type",
+            :college_code => "college_code", :college_name => "college_name",
+            :dept_name => "dept_name", :dept_code => "dept_code",
+            :major_code => "major_code", :major => "major", :ill_permission => "ill-permission", 
+            :newschool_ldap => "newschool_ldap"
+          remember_me true
+          remember_me_for 300
+          httponly true
+          secure true
+          login_inaccessible_url "http://library.nyu.edu/errors/login-library-nyu-edu/"
+        end
+      end
+
       def aleph_bor_auth_permissions(args={})
         bor_auth = aleph_bor_auth(args)
         return (bor_auth.nil? or bor_auth.error) ? {} : bor_auth.permissions
