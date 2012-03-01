@@ -3,9 +3,8 @@ module AuthpdsNyu
     require 'net/http'
     require 'net/https'
     class Opensso
-      def initialize(controller, options)
-        opensso_url = options[:opensso_url]
-        raise ArgumentError.new("Argument Error in #{self.class}. :opensso_url not specified in options.") if opensso_url.nil?;
+      def initialize(controller, opensso_url)
+        raise ArgumentError.new("Argument Error in #{self.class}. :opensso_url not specified.") if opensso_url.nil?;
         @cookies = controller.cookies
         @opensso_uri = URI.parse(opensso_url)
         opensso_uri_split = URI.split(opensso_url)

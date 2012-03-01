@@ -9,9 +9,15 @@ module AuthpdsNyu
     end
 
     module Config
+      # Base opensso url
+      def opensso_url(value = nil)
+        rw_config(:opensso_url, value, "https://login.nyu.edu:443/sso")
+      end
+      alias_method :opensso_url=, :opensso_url
+
       # Base aleph url
       def aleph_url(value = nil)
-        rw_config(:aleph_url, value)
+        rw_config(:aleph_url, value, "http://aleph.library.nyu.edu")
       end
       alias_method :aleph_url=, :aleph_url
 
@@ -23,9 +29,9 @@ module AuthpdsNyu
 
       # Default aleph sublibrary
       def aleph_default_sublibrary(value = nil)
-        rw_config(:aleph_default_sub_library, value, "BOBST")
+        rw_config(:aleph_default_sublibrary, value, "BOBST")
       end
-      alias_method :aleph_default_sub_library=, :aleph_default_sub_library
+      alias_method :aleph_default_sublibrary=, :aleph_default_sublibrary
     end
 
     module AuthpdsCallbackMethods
@@ -35,7 +41,7 @@ module AuthpdsNyu
 
       def valid_sso_session?
         begin
-          @valid_sso_session ||= AuthpdsNyu::Sun::Opensso.new(@controller, @options).is_valid?
+          @valid_sso_session ||= AuthpdsNyu::Sun::Opensso.new(controller, self.class.opensso_url).is_valid?
         rescue Exception => e
           handle_login_exception e
           return false
@@ -72,11 +78,10 @@ module AuthpdsNyu
       def aleph_bor_auth(adm, sublibrary)
         bor_id = pds_user.id unless pds_user.nil?
         verification = pds_user.verification unless pds_user.nil?
-        aleph_url = self.class.aleph.url
+        aleph_url = self.class.aleph_url
         adm = self.class.aleph_default_adm if adm.nil?
         sublibrary = self.class.aleph_default_sublibrary if sublibrary.nil?
         # Call X-Service
-        def initialize(aleph_url, adm, sublibrary, "N", bor_id, bor_verification)
         bor_auth = 
           AuthPdsNyu::Exlibris::Aleph::BorAuth.
             new(aleph_url, adm, sublibrary, "N", bor_id, bor_verification)
