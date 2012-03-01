@@ -7,11 +7,11 @@ require "authpds-nyu/version"
 Gem::Specification.new do |s|
   s.name        = "authpds-nyu"
   s.version     = AuthpdsNyu::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of AuthpdsNyu."
-  s.description = "TODO: Description of AuthpdsNyu."
+  s.authors     = ["Scot Dalton"]
+  s.email       = ["scotdalton@gmail.com"]
+  s.homepage    = "http://github.com/scotdalton/authpds-nyu"
+  s.summary     = "NYU libraries SSO client."
+  s.description = "NYU libraries SSO client."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
