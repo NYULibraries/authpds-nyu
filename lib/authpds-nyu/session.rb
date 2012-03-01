@@ -70,14 +70,14 @@ module AuthpdsNyu
         end
       end
 
-      def aleph_bor_auth_permissions(args={})
-        bor_auth = aleph_bor_auth(args)
+      def aleph_bor_auth_permissions(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
+        bor_auth = aleph_bor_auth(bor_id, verification, adm, sublibrary)
         return (bor_auth.nil? or bor_auth.error) ? {} : bor_auth.permissions
       end 
 
-      def aleph_bor_auth(adm, sublibrary)
-        bor_id = pds_user.id unless pds_user.nil?
-        verification = pds_user.verification unless pds_user.nil?
+      def aleph_bor_auth(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
+        bor_id = pds_user.id if bor_id.nil?
+        verification = pds_user.verification if verification.nil?
         aleph_url = self.class.aleph_url
         adm = self.class.aleph_default_adm if adm.nil?
         sublibrary = self.class.aleph_default_sublibrary if sublibrary.nil?
