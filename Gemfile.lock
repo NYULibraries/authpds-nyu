@@ -38,10 +38,10 @@ GEM
     authlogic (3.1.0)
       activerecord (>= 3.0.7)
       activerecord (>= 3.0.7)
-    authpds (0.0.3)
+    authpds (0.0.5)
       authlogic
       nokogiri
-      rails (~> 3.2.1)
+      rails (~> 3.2.0)
     builder (3.0.0)
     erubis (2.7.0)
     hike (1.2.1)
