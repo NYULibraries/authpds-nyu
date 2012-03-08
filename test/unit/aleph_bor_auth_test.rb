@@ -4,7 +4,7 @@ class AlephBorAuthTest < ActiveSupport::TestCase
   def setup
     activate_authlogic
     controller.session[:session_id] = "FakeSessionID"
-    # controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NYU }
+    # controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEW_NYU }
     controller.cookies[:iPlanetDirectoryPro] = { :value => VALID_OPENSSO_FOR_NYU }
   end
 

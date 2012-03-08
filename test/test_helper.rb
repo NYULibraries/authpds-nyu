@@ -38,13 +38,14 @@ ActiveRecord::Schema.define(:version => 1) do
 end
 
 # Load support files
-require File.dirname(__FILE__) + '/../lib/authpds-nyu' unless defined?(AuthpdsNyu)
+require File.dirname(__FILE__) + '/../lib/authpds-nyu'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 class ActiveSupport::TestCase
-  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4SfcxDSwCymgKWMu6OksqGN0zuRV5cUdz33Bo.*AAJTSQACMDIAAlNLAAstMTg5NTE2OTAzNQACUzEAAjA2*'
+  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4Sfcz9Ft-_J7b9B4WyLvQB3EWxEYXmhzx86ZM.*AAJTSQACMDIAAlNLAAoyMTA2OTg5ODIzAAJTMQACMDE.*'
   INVALID_OPENSSO = "Invalid"
-  VALID_PDS_HANDLE_FOR_NYU = '132012112947113134742310506860'
+  VALID_PDS_HANDLE_FOR_NEW_NYU = '83201295456116368349190324314'
+  VALID_PDS_HANDLE_FOR_EXISTING_NYU = '83201295456116368349190324314'
   VALID_PDS_HANDLE_FOR_NEWSCHOOL = '272201212284614806184193096120278'
   VALID_PDS_HANDLE_FOR_COOPER = '272201212284614806184193096120278'
   INVALID_PDS_HANDLE = "Invalid"
@@ -72,6 +73,10 @@ class Authlogic::TestCase::MockController
   def root_url
   end
 
+  def validate_url(options={})
+    return "http://railsapp.library.nyu.edu/validate?return_url=#{options[:return_url]}"
+  end
+  
   def performed?
     false
   end

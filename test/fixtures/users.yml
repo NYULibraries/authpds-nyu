@@ -1,0 +1,35 @@
+scot:
+  email: scot.dalton@gmail.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("scot" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+
+ba36:
+  id: 1
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("ba36" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  username: ba36
+  email: barnaby.alter@nyu.edu
+  firstname: Barnaby
+  lastname: Alter
+  user_attributes: <%= {
+    :nyuidn => "N18158418", 
+    :verification => "6EAF453D8B01E5AC27D9",
+    :bor_status => "51",
+		:aleph_permissions => {} }.to_yaml.inspect  %>
+
+# std5:
+#   id: 2
+#   password_salt: <%= salt = Authlogic::Random.hex_token %>
+#   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("std5" + salt) %>
+#   persistence_token: <%= Authlogic::Random.hex_token %>
+#   username: std5
+#   email: scot.dalton@nyu.edu
+#   firstname: Scot
+#   lastname: Dalton
+#   user_attributes: <%#= {
+#     :nyuidn => "N12162279", 
+#     :verification => "d4465aacaa645f2164908cd4184c09f0",
+#     :bor_status => "51",
+#     :aleph_permissions => {} }.to_yaml.inspect  %>

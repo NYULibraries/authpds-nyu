@@ -53,15 +53,7 @@ module AuthpdsNyu
     module InstanceMethods
       def self.included(klass)
         klass.class_eval do
-          pds_attributes :id => "id", :uid => "uid", 
-            :opensso => "opensso", :name => "name", :firstname => "givenname", 
-            :lastname => "sn", :commonname => "cn", :email => "email",
-            :nyuidn => "nyuidn", :verification => "verification", :institute => "institute",
-            :bor_status => "bor-status", :bor_type => "bor-type",
-            :college_code => "college_code", :college_name => "college_name",
-            :dept_name => "dept_name", :dept_code => "dept_code",
-            :major_code => "major_code", :major => "major", :ill_permission => "ill-permission", 
-            :newschool_ldap => "newschool_ldap"
+          pds_attributes :firstname => "givenname", :lastname => "sn", :email => "email", :primary_institution => "institute" 
           remember_me true
           remember_me_for 300
           httponly true
