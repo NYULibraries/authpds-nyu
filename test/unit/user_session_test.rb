@@ -23,17 +23,17 @@ class UserSessionTest < ActiveSupport::TestCase
     user_session = UserSession.find
   end
   
-  test "find_new_user" do
-    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEW_NYU }
-    user_session = UserSession.find
-    puts user_session.record.username
-    puts user_session.record.id
-  end
-  
-  test "find_existing_user" do
-    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_EXISTING_NYU }
-    user_session = UserSession.find
-    puts user_session.record.username
-    puts user_session.record.id
-  end
+  # test "find_new_user" do
+  #   controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEW_NYU }
+  #   user_session = UserSession.find
+  #   # puts user_session.record.username
+  #   # puts user_session.record.id
+  # end
+  # 
+  # test "find_existing_user" do
+  #   controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_EXISTING_NYU }
+  #   user_session = UserSession.find
+  #   # puts user_session.record.username
+  #   # puts user_session.record.id
+  # end
 end
