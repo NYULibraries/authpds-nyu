@@ -42,9 +42,9 @@ require File.dirname(__FILE__) + '/../lib/authpds-nyu'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 class ActiveSupport::TestCase
-  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4SfcwFgz4BiWlHd1XVs6_wwHYAti2Wn-C9o18.*AAJTSQACMDIAAlNLAAk4OTU0ODMzNDIAAlMxAAIwMQ..*'
+  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4Sfcz_O7UA1U1KruO_dMKGYQQKYhZNqDgeEPI.*AAJTSQACMDIAAlNLAAstMTMwMzI0MzkzMwACUzEAAjAx*'
   INVALID_OPENSSO = "Invalid"
-  VALID_PDS_HANDLE_FOR_NEW_NYU = '83201295456116368349190324314'
+  VALID_PDS_HANDLE_FOR_NEW_NYU = '293201211510129623735547952389'
   VALID_PDS_HANDLE_FOR_EXISTING_NYU = '83201295456116368349190324314'
   VALID_PDS_HANDLE_FOR_NEWSCHOOL = '272201212284614806184193096120278'
   VALID_PDS_HANDLE_FOR_COOPER = '272201212284614806184193096120278'
@@ -67,14 +67,15 @@ class Authlogic::TestCase::MockController
   include Authpds::Controllers::AuthpdsController
   
   def url_for(options={})
-    return "http://railsapp.library.nyu.edu/validate?return_url=#{options[:return_url]}"
+    return "#{root_url}/validate?return_url=#{options[:return_url]}"
   end
   
   def root_url
+    return "http://railsapp.library.nyu.edu"
   end
 
   def validate_url(options={})
-    return "http://railsapp.library.nyu.edu/validate?return_url=#{options[:return_url]}"
+    return "#{root_url}/validate?return_url=#{options[:return_url]}"
   end
   
   def performed?

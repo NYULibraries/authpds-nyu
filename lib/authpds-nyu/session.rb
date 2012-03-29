@@ -61,6 +61,11 @@ module AuthpdsNyu
           login_inaccessible_url "http://library.nyu.edu/errors/login-library-nyu-edu/"
         end
       end
+      
+      # Override logout url for NYU.
+      def logout_url
+        return "#{self.class.pds_url}/logout?url=#{CGI::escape(controller.user_session_redirect_url(self.class.redirect_logout_url))}"
+      end
 
       def aleph_bor_auth_permissions(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
         bor_auth = aleph_bor_auth(bor_id, verification, adm, sublibrary)
@@ -75,8 +80,8 @@ module AuthpdsNyu
         sublibrary = self.class.aleph_default_sublibrary if sublibrary.nil?
         # Call X-Service
         bor_auth = 
-          AuthPdsNyu::Exlibris::Aleph::BorAuth.
-            new(aleph_url, adm, sublibrary, "N", bor_id, bor_verification)
+          Exlibris::Aleph::BorAuth.
+            new(aleph_url, adm, sublibrary, "N", bor_id, verification)
         controller.logger.error(
             "Error in #{self.class}. "+
             "No permissions returned from Aleph bor-auth for user with bor_id #{bor_id}."+
