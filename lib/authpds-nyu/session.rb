@@ -63,7 +63,7 @@ module AuthpdsNyu
       end
       
       # Override logout url for NYU.
-      def logout_url
+      def logout_url(params={})
         return "#{self.class.pds_url}/logout?url=#{CGI::escape(controller.user_session_redirect_url(self.class.redirect_logout_url))}"
       end
 
