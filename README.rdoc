@@ -28,7 +28,7 @@ rails generate model User username:string email:string firstname:string \
 
 === Mixin authpds methods into UserSessionsController
   class UserSessionsController < ApplicationController
-  	require 'authpds'
+    require 'authpds'
     include Authpds::Controllers::AuthpdsSessionsController
   end
 
