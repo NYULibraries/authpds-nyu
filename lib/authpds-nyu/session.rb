@@ -1,4 +1,16 @@
 module AuthpdsNyu
+  # == Overview
+  # This gem provides a mechanism for user authentication and authorization via NYU Libraries PDS system.  
+  # The module extends Authpds and should be compatible with Authpds configuation.
+  # It also provides hooks for custom functionality.
+  # The documentation below describes NYU specific config methods available.
+  # 
+  # == Config Options Available
+  # :opensso_url:: Base OpenSSO url (https://login.nyu.edu:443/sso)
+  # :aleph_url:: Aleph url (http://aleph.library.nyu.edu)
+  # :aleph_default_adm:: Aleph default ADM (NYU50)
+  # :aleph_default_sublibrary:: Aleph default sublibrary (BOBST)
+  # 
   module Session
     def self.included(klass)
       klass.class_eval do
@@ -62,7 +74,7 @@ module AuthpdsNyu
         end
       end
       
-      # Override logout url for NYU.
+      # Overriden logout url for NYU.
       def logout_url(params={})
         return "#{self.class.pds_url}/logout?url=#{CGI::escape(controller.user_session_redirect_url(self.class.redirect_logout_url))}"
       end

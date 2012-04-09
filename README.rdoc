@@ -1,3 +1,53 @@
 = AuthpdsNyu
 
-Gem to connect to NYU PDS system for user authentication and authorization.
+This gem provides a mechanism for user authentication and authorization via NYU Libraries PDS system.  It extends Authpds and provides NYU Libraries' specific configuration.
+
+== Basics
+=== Generate User-like model
+rails generate model User username:string email:string firstname:string \
+	lastname:string mobile_phone:string crypted_password:string password_salt:string \
+	session_id:string persistence_token:string login_count:integer last_request_at:string \
+	current_login_at:string last_login_at:string last_login_ip:string current_login_ip:string \
+	user_attributes:text refreshed_at:datetime
+	
+=== Configure User-like model
+
+=== Generate UserSession model
+  $ rails generate authlogic:session user_session
+
+=== Configure UserSession with Authpds options
+  class UserSession < Authlogic::Session::Base
+    pds_url "https://login.library.nyu.edu"
+    redirect_logout_url "http://bobcat.library.nyu.edu"
+    calling_system "nyu_system"
+    anonymous true
+  end
+
+=== Create UserSessions controller
+  $ rails generate controller UserSessions --no-assets --no-helper
+
+=== Mixin authpds methods into UserSessionsController
+  class UserSessionsController < ApplicationController
+  	require 'authpds'
+    include Authpds::Controllers::AuthpdsSessionsController
+  end
+
+=== Mixin authpds methods into ApplicationController
+  class ApplicationController < ActionController::Base
+    protect_from_forgery
+    require 'authpds'
+    include Authpds::Controllers::AuthpdsController
+  end
+
+
+== Overview
+The module extends Authpds and should be compatible with Authpds configuation.
+It also provides hooks for custom functionality.
+The documentation below describes NYU specific config methods available.
+
+== Config Options Available
+:opensso_url:: Base OpenSSO url (https://login.nyu.edu:443/sso)
+:aleph_url:: Aleph url (http://aleph.library.nyu.edu)
+:aleph_default_adm:: Aleph default ADM (NYU50)
+:aleph_default_sublibrary:: Aleph default sublibrary (BOBST)
+
