@@ -9,8 +9,18 @@ rails generate model User username:string email:string firstname:string \
 	session_id:string persistence_token:string login_count:integer last_request_at:string \
 	current_login_at:string last_login_at:string last_login_ip:string current_login_ip:string \
 	user_attributes:text refreshed_at:datetime
-	
+
 === Configure User-like model
+  class User < ActiveRecord::Base
+  	serialize :user_attributes  
+
+  	acts_as_authentic do |c|
+  		c.validations_scope = :username
+  		c.validate_password_field = false
+  		c.require_password_confirmation = false  
+  		c.disable_perishable_token_maintenance = true
+  	end
+  end
 
 === Generate UserSession model
   $ rails generate authlogic:session user_session
