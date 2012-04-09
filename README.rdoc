@@ -4,11 +4,11 @@ This gem provides a mechanism for user authentication and authorization via NYU 
 
 == Basics
 === Generate User-like model
-rails generate model User username:string email:string firstname:string \
-	lastname:string mobile_phone:string crypted_password:string password_salt:string \
-	session_id:string persistence_token:string login_count:integer last_request_at:string \
-	current_login_at:string last_login_at:string last_login_ip:string current_login_ip:string \
-	user_attributes:text refreshed_at:datetime
+  rails generate model User username:string email:string firstname:string \
+  	lastname:string mobile_phone:string crypted_password:string password_salt:string \
+  	session_id:string persistence_token:string login_count:integer last_request_at:string \
+  	current_login_at:string last_login_at:string last_login_ip:string current_login_ip:string \
+  	user_attributes:text refreshed_at:datetime
 
 === Configure User-like model
   class User < ActiveRecord::Base
