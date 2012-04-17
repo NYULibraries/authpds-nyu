@@ -23,7 +23,7 @@ This gem provides a mechanism for user authentication and authorization via NYU 
   end
 
 === Generate UserSession model
-  $ rails generate authlogic:session user_session
+  $ rails generate authlogic:session UserSession
 
 === Configure UserSession with Authpds options
   class UserSession < Authlogic::Session::Base
