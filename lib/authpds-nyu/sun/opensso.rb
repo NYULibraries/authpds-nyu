@@ -39,7 +39,7 @@ module AuthpdsNyu
 
       def get_token_cookie(token_cookie_name)
         return nil if token_cookie_name.nil?
-        token_cookie = @cookies[token_cookie_name]
+        token_cookie = @cookies.fetch(token_cookie_name, nil)
         token_cookie = @cookies[token_cookie_name.to_sym] if token_cookie.nil?
         token_cookie = CGI.unescape(token_cookie.to_s.gsub('+', '%2B'))
         token_cookie = (token_cookie != '') ? 

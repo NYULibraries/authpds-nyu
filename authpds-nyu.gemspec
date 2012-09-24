@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.0"
-  s.add_dependency "authpds", "~> 0.1.0"
+  s.add_dependency "authpds", "~> 0.1.2"
   s.add_dependency "exlibris-aleph", "~> 0.1.0"
 
   s.add_development_dependency "sqlite3"

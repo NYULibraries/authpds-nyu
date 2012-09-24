@@ -85,8 +85,10 @@ module AuthpdsNyu
       end 
 
       def aleph_bor_auth(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
-        bor_id = pds_user.id if bor_id.nil?
-        verification = pds_user.verification if verification.nil?
+        bor_id = pds_user.id if bor_id.nil? unless pds_user.nil?
+        raise ArgumentError.new("Argument Error in #{self.class}. bor_id not specified.") if bor_id.nil?;
+        verification = pds_user.verification if verification.nil? unless pds_user.nil?
+        raise ArgumentError.new("Argument Error in #{self.class}. verification not specified.") if verification.nil?;
         aleph_url = self.class.aleph_url
         adm = self.class.aleph_default_adm if adm.nil?
         sublibrary = self.class.aleph_default_sublibrary if sublibrary.nil?
