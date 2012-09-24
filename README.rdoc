@@ -61,3 +61,5 @@ The documentation below describes NYU specific config methods available.
 :aleph_default_adm:: Aleph default ADM (NYU50)
 :aleph_default_sublibrary:: Aleph default sublibrary (BOBST)
 
+
+== Build Status {<img src="https://secure.travis-ci.org/scotdalton/authpds-nyu.png"/>}[http://travis-ci.org/scotdalton/authpds-nyu]
