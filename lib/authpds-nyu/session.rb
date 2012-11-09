@@ -1,16 +1,16 @@
 module AuthpdsNyu
   # == Overview
-  # This gem provides a mechanism for user authentication and authorization via NYU Libraries PDS system.  
+  # This gem provides a mechanism for user authentication and authorization via NYU Libraries PDS system.
   # The module extends Authpds and should be compatible with Authpds configuation.
   # It also provides hooks for custom functionality.
   # The documentation below describes NYU specific config methods available.
-  # 
+  #
   # == Config Options Available
   # :opensso_url:: Base OpenSSO url (https://login.nyu.edu:443/sso)
   # :aleph_url:: Aleph url (http://aleph.library.nyu.edu)
   # :aleph_default_adm:: Aleph default ADM (NYU50)
   # :aleph_default_sublibrary:: Aleph default sublibrary (BOBST)
-  # 
+  #
   module Session
     def self.included(klass)
       klass.class_eval do
@@ -61,11 +61,11 @@ module AuthpdsNyu
         return @valid_sso_session
       end
     end
-    
+
     module InstanceMethods
       def self.included(klass)
         klass.class_eval do
-          pds_attributes :firstname => "givenname", :lastname => "sn", :email => "email", :primary_institution => "institute" 
+          pds_attributes :firstname => "givenname", :lastname => "sn", :email => "email", :primary_institution => "institute"
           remember_me true
           remember_me_for 300
           httponly true
@@ -73,7 +73,7 @@ module AuthpdsNyu
           login_inaccessible_url "http://library.nyu.edu/errors/login-library-nyu-edu/"
         end
       end
-      
+
       # Overriden logout url for NYU.
       def logout_url(params={})
         return "#{self.class.pds_url}/logout?url=#{CGI::escape(controller.user_session_redirect_url(self.class.redirect_logout_url))}"
@@ -82,7 +82,7 @@ module AuthpdsNyu
       def aleph_bor_auth_permissions(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
         bor_auth = aleph_bor_auth(bor_id, verification, adm, sublibrary)
         return (bor_auth.nil? or bor_auth.error) ? {} : bor_auth.permissions
-      end 
+      end
 
       def aleph_bor_auth(bor_id=nil, verification=nil, adm=nil, sublibrary=nil)
         bor_id = pds_user.id if bor_id.nil? unless pds_user.nil?
@@ -93,7 +93,7 @@ module AuthpdsNyu
         adm = self.class.aleph_default_adm if adm.nil?
         sublibrary = self.class.aleph_default_sublibrary if sublibrary.nil?
         # Call X-Service
-        bor_auth = 
+        bor_auth =
           Exlibris::Aleph::BorAuth.
             new(aleph_url, adm, sublibrary, "N", bor_id, verification)
         controller.logger.error(

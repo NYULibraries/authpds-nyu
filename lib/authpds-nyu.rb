@@ -9,4 +9,3 @@ AUTHPDS_NYU_PATH = File.dirname(__FILE__) + "/authpds-nyu/"
   require AUTHPDS_NYU_PATH + library
 end
 Authlogic::Session::Base.send(:include, AuthpdsNyu::Session)
-

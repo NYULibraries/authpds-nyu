@@ -29,8 +29,8 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
-    t.string   "last_login_ip" 
-    t.string   "current_login_ip" 
+    t.string   "last_login_ip"
+    t.string   "current_login_ip"
     t.text     "user_attributes"
     t.datetime "refreshed_at"
     t.timestamps
@@ -42,9 +42,9 @@ require File.dirname(__FILE__) + '/../lib/authpds-nyu'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
 class ActiveSupport::TestCase
-  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4Sfcz_O7UA1U1KruO_dMKGYQQKYhZNqDgeEPI.*AAJTSQACMDIAAlNLAAstMTMwMzI0MzkzMwACUzEAAjAx*'
+  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4Sfcxc13Lmq865G281ghiEEXHBsnl6eVSC3hU.*AAJTSQACMDIAAlMxAAIwMQ..*'
   INVALID_OPENSSO = "Invalid"
-  VALID_PDS_HANDLE_FOR_NEW_NYU = '293201211510129623735547952389'
+  VALID_PDS_HANDLE_FOR_NEW_NYU = '911201215342297526743181020780'
   VALID_PDS_HANDLE_FOR_EXISTING_NYU = '83201295456116368349190324314'
   VALID_PDS_HANDLE_FOR_NEWSCHOOL = '272201212284614806184193096120278'
   VALID_PDS_HANDLE_FOR_COOPER = '272201212284614806184193096120278'
@@ -65,11 +65,11 @@ class Authlogic::TestCase::MockController
   end
 
   include Authpds::Controllers::AuthpdsController
-  
+
   def url_for(options={})
     return "#{root_url}/validate?return_url=#{options[:return_url]}"
   end
-  
+
   def root_url
     return "http://railsapp.library.nyu.edu"
   end
@@ -77,11 +77,11 @@ class Authlogic::TestCase::MockController
   def validate_url(options={})
     return "#{root_url}/validate?return_url=#{options[:return_url]}"
   end
-  
+
   def performed?
     false
   end
-  
+
   def redirect_to(*args)
     # puts args.inspect
   end

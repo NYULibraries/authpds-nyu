@@ -29,7 +29,7 @@ module AuthpdsNyu
         return @cookies[:nyulibrary_opensso_cookiename] unless @cookies[:nyulibrary_opensso_cookiename].nil?
         req = Net::HTTP::Get.new(@opensso_uri.path + '/identity/getCookieNameForToken')
         res = @http.request(req, '')
-        raise RuntimeError.new( 
+        raise RuntimeError.new(
           "Error in #{self.class}."+
             "Unrecognized response: #{res}") unless res.body.starts_with?("string=")
         cookie_name = res.body.split('=').at(1).chomp unless res.body.split('=').at(1).nil?
@@ -42,8 +42,8 @@ module AuthpdsNyu
         token_cookie = @cookies[token_cookie_name]
         token_cookie = @cookies[token_cookie_name.to_sym] if token_cookie.nil?
         token_cookie = CGI.unescape(token_cookie.to_s.gsub('+', '%2B'))
-        token_cookie = (token_cookie != '') ? 
-        (token_cookie.start_with?(token_cookie_name)) ? 
+        token_cookie = (token_cookie != '') ?
+        (token_cookie.start_with?(token_cookie_name)) ?
           token_cookie : "#{token_cookie_name}=#{token_cookie}; path=" : nil
       end
 
@@ -52,7 +52,7 @@ module AuthpdsNyu
         req = Net::HTTP::Get.new(@opensso_uri.path + '/identity/isTokenValid')
         req['Cookie'] = token_cookie
         res = @http.request(req, '')
-        raise RuntimeError.new( 
+        raise RuntimeError.new(
           "Error in #{self.class}."+
             "Unrecognized response: #{res}") unless res.body.starts_with?("boolean=")
         res.body.split('=').at(1).chomp == 'true'
