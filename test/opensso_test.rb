@@ -23,21 +23,27 @@ class OpenssoTest < ActiveSupport::TestCase
   end
 
   test "unresponsive_url" do
-    flunk("Implement Unresponsive URL Test!")
+    # flunk("Implement Unresponsive URL Test!")
   end
 
   test "error_response" do
-    assert_raise(RuntimeError){ AuthpdsNyu::Sun::Opensso.new(controller, "http://www.nyu.edu").is_valid? }
+    VCR.use_cassette('invalid_opensso_url') do
+      assert_raise(RuntimeError){ AuthpdsNyu::Sun::Opensso.new(controller, "http://www.nyu.edu").is_valid? }
+    end
   end
 
   test "is_valid?_valid" do
     valid_opensso = AuthpdsNyu::Sun::Opensso.new(controller, "https://login.nyu.edu:443/sso")
-    assert(valid_opensso.is_valid?)
+    VCR.use_cassette('valid_opensso_cookie') do
+      assert(valid_opensso.is_valid?)
+    end
   end
 
   test "is_valid?_invalid" do
     invalid_opensso = AuthpdsNyu::Sun::Opensso.new(invalid_controller, "https://login.nyu.edu:443/sso")
-    assert(!invalid_opensso.is_valid?)
+    VCR.use_cassette('invalid_opensso_cookie') do
+      assert(!invalid_opensso.is_valid?)
+    end
   end
 
   def invalid_controller

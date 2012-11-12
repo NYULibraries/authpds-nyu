@@ -1,8 +1,9 @@
+require 'rubygems'
 require 'active_support/dependencies'
 require 'authpds'
 require 'authlogic/test_case'
 require "test/unit"
-require 'rubygems'
+require "vcr"
 require "active_record"
 require "active_record/fixtures"
 # Configure Rails Environment
@@ -41,8 +42,13 @@ end
 require File.dirname(__FILE__) + '/../lib/authpds-nyu'
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each { |f| require f }
 
+VCR.configure do |c|
+  c.cassette_library_dir = 'test/vcr_cassettes'
+  c.hook_into :webmock # or :fakeweb
+end
+
 class ActiveSupport::TestCase
-  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4Sfcxc13Lmq865G281ghiEEXHBsnl6eVSC3hU.*AAJTSQACMDIAAlMxAAIwMQ..*'
+  VALID_OPENSSO_FOR_NYU = 'AQIC5wM2LY4SfczTdvNBIcB4pWXKQmc-G0dHh5xgWeS0A5I.*AAJTSQACMDIAAlMxAAIwNg..*'
   INVALID_OPENSSO = "Invalid"
   VALID_PDS_HANDLE_FOR_NEW_NYU = '911201215342297526743181020780'
   VALID_PDS_HANDLE_FOR_EXISTING_NYU = '83201295456116368349190324314'
@@ -83,6 +89,5 @@ class Authlogic::TestCase::MockController
   end
 
   def redirect_to(*args)
-    # puts args.inspect
   end
 end

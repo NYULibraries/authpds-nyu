@@ -1,11 +1,5 @@
-require 'active_support/dependencies'
 require 'authpds'
 require 'exlibris-aleph'
-AUTHPDS_NYU_PATH = File.dirname(__FILE__) + "/authpds-nyu/"
-[ 
-  'session',
-  'sun/opensso'
-].each do |library|
-  require AUTHPDS_NYU_PATH + library
-end
+require 'require_all'
+require_all "#{File.dirname(__FILE__)}/authpds-nyu/"
 Authlogic::Session::Base.send(:include, AuthpdsNyu::Session)

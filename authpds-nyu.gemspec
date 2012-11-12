@@ -16,9 +16,12 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
+  s.add_dependency "require_all", "~> 1.2.1"
   s.add_dependency "rails", "~> 3.2.0"
   s.add_dependency "authpds", "~> 0.2.0"
-  s.add_dependency "exlibris-aleph", "~> 0.1.4"
+  s.add_dependency "exlibris-aleph", "~> 0.1.0"
 
-  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "rake", "~> 0.9.2.2"
+  s.add_development_dependency "vcr", "~> 2.3.0"
+  s.add_development_dependency "webmock", "~> 1.9.0"
 end
