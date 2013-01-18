@@ -1,5 +1,5 @@
 = AuthpdsNyu
-{<img src="https://secure.travis-ci.org/scotdalton/authpds-nyu.png?branch=master" alt="Build Status" />}[https://travis-ci.org/scotdalton/authpds-nyu]
+{<img src="https://api.travis-ci.org/scotdalton/authpds-nyu.png?branch=master" alt="Build Status" />}[https://travis-ci.org/scotdalton/authpds-nyu]
 {<img src="https://gemnasium.com/scotdalton/authpds-nyu.png" alt="Dependency Status" />}[https://gemnasium.com/scotdalton/authpds-nyu]
 {<img src="https://codeclimate.com/badge.png" alt="Code Climage" />}[https://codeclimate.com/github/scotdalton/authpds-nyu]
 
