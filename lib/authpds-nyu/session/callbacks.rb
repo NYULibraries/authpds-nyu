@@ -2,7 +2,7 @@ module AuthpdsNyu
   module Session
     module Callbacks
       def pds_record_identifier
-        (pds_user.opensso.nil?) ? :id : :uid
+        (pds_user.respond_to?(:open_sso) and pds_user.opensso) ? :uid : :id
       end
 
       def valid_sso_session

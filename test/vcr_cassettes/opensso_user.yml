@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://logindev.library.nyu.edu/pds
+    body:
+      encoding: US-ASCII
+      string: func=get-attribute&attribute=bor_info&calling_system=authpds-nyu&pds_handle=1122013121556337967544921442906
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 11 Feb 2013 17:16:25 GMT
+      Server:
+      - Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/0.9.8n mod_perl/2.0.4 Perl/v5.8.9
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/html; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: <?xml version = "1.0" encoding = "UTF-8"?><bor-info><id>***</id><expiry-date>20121031</expiry-date><bor-status>51</bor-status><barcode>***</barcode><bor-status>51</bor-status><bor-type>CB</bor-type><name>Scot
+        Thomas</name><uid>***</uid><email>***</email><cn>S
+        D</cn><givenname>S</givenname><sn>D</sn><verification>***</verification><nyuidn>***</nyuidn><opensso>true</opensso><edupersonentitlement><value>urn:mace:nyu.edu:entl:its:wikispriv</value><value>urn:mace:nyu.edu:entl:its:classes</value><value>urn:mace:nyu.edu:entl:its:qualtrics</value><value>urn:mace:nyu.edu:entl:lib:eresources</value><value>urn:mace:nyu.edu:entl:its:wikispub</value><value>urn:mace:nyu.edu:entl:its:webspace</value><value>urn:mace:nyu.edu:entl:lib:ideaexchange</value><value>urn:mace:nyu.edu:entl:its:projmgmt</value><value>urn:mace:nyu.edu:entl:its:files</value><value>urn:mace:incommon:entitlement:common:1</value></edupersonentitlement><objectclass><value>organizationalPerson</value><value>person</value><value>nyuInetOrgPerson</value><value>inetLocalMailRecipient</value><value>inetMailUser</value><value>inetUser</value><value>userPresenceProfile</value><value>nsManagedPerson</value><value>ipUser</value><value>eduPerson</value><value>inetOrgPerson</value><value>homeInetOrgPerson</value><value>top</value></objectclass><ill-permission>Y</ill-permission><college_code>GA</college_code><college_name>Graduate
+        School of Arts and Science</college_name><dept_code>CSCI</dept_code><dept_name>DIVISION
+        OF LIBRARIES</dept_name><major_code>GAINFOMS</major_code><major>Information
+        Systems</major><email_address>***</email_address><institute>NYU</institute></bor-info>
+    http_version: 
+  recorded_at: Mon, 11 Feb 2013 17:16:25 GMT
+recorded_with: VCR 2.3.0

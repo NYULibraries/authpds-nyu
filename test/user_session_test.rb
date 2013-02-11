@@ -61,17 +61,21 @@ class UserSessionTest < ActiveSupport::TestCase
     end
   end
 
-  # test "find_new_user" do
-  #   controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEW_NYU }
-  #   user_session = UserSession.find
-  #   # puts user_session.record.username
-  #   # puts user_session.record.id
-  # end
-  #
-  # test "find_existing_user" do
-  #   controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_EXISTING_NYU }
-  #   user_session = UserSession.find
-  #   # puts user_session.record.username
-  #   # puts user_session.record.id
-  # end
+  test "non opensso user" do
+    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEWSCHOOL }
+    VCR.use_cassette('non opensso user') do
+      assert_nothing_raised do
+        user_session = UserSession.find
+      end
+    end
+  end
+  
+  test "opensso user" do
+    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NYU }
+    VCR.use_cassette('opensso user') do
+      assert_nothing_raised do
+        user_session = UserSession.find
+      end
+    end
+  end
 end
