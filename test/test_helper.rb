@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require 'rubygems'
 require 'active_support/dependencies'
 require 'authpds'
