@@ -2,7 +2,7 @@
 {<img src="https://badge.fury.io/rb/authpds-nyu.png" alt="Gem Version" />}[http://badge.fury.io/rb/authpds-nyu]
 {<img src="https://api.travis-ci.org/scotdalton/authpds-nyu.png?branch=master" alt="Build Status" />}[https://travis-ci.org/scotdalton/authpds-nyu]
 {<img src="https://gemnasium.com/scotdalton/authpds-nyu.png" alt="Dependency Status" />}[https://gemnasium.com/scotdalton/authpds-nyu]
-{<img src="https://codeclimate.com/badge.png" alt="Code Climage" />}[https://codeclimate.com/github/scotdalton/authpds-nyu]
+{<img src="https://codeclimate.com/github/scotdalton/authpds-nyu.png" />}[https://codeclimate.com/github/scotdalton/authpds-nyu]
 {<img src="https://coveralls.io/repos/scotdalton/authpds-nyu/badge.png?branch=master" alt="Coverage Status" />}[https://coveralls.io/r/scotdalton/authpds-nyu]
 
 Libraries for user authentication and authorization via NYU Libraries PDS system.  It extends Authpds and provides NYU Libraries' specific configuration.
