@@ -17,7 +17,7 @@ module AuthpdsNyu
         adm = aleph_default_adm if adm.nil?
         sublibrary = aleph_default_sublibrary if sublibrary.nil?
         # Call X-Service
-        bor_auth = Exlibris::Aleph::BorAuth.new(aleph_url, adm, sublibrary, "N", bor_id, verification)
+        bor_auth = Exlibris::Aleph::Xservice::BorAuth.new(aleph_url, adm, sublibrary, "N", bor_id, verification)
         log_error(bor_id, bor_auth) and return nil if bor_auth.nil? or bor_auth.error
         return bor_auth
       end

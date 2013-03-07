@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "require_all", "~> 1.2.1"
   s.add_dependency "authpds", "~> 0.2.7"
-  s.add_dependency "exlibris-aleph", "~> 1.0.2"
+  s.add_dependency "exlibris-aleph", "~> 1.0.4"
 
   s.add_development_dependency "rake", "~> 10.0.3"
   s.add_development_dependency "vcr", "~> 2.4.0"
