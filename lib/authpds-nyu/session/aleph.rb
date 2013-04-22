@@ -25,8 +25,7 @@ module AuthpdsNyu
       def log_error bor_id, verification, bor_auth
         controller.logger.error "Error in #{self.class}. "+
           "No permissions returned from Aleph bor-auth for user with bor_id #{bor_id} and verification #{verification}.\n"+
-            "Error: #{(bor_auth.nil?) ? "bor_auth is nil." : bor_auth.error.inspect}\n"+
-              "Response: #{bor_auth.response.inspect}"
+            "Error: #{(bor_auth.nil?) ? "bor_auth is nil." : bor_auth.error.inspect}"
       end
       private :log_error
     end
