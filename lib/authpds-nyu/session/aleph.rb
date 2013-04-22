@@ -18,14 +18,15 @@ module AuthpdsNyu
         sublibrary = aleph_default_sublibrary if sublibrary.nil?
         # Call X-Service
         bor_auth = Exlibris::Aleph::Xservice::BorAuth.new(aleph_url, adm, sublibrary, "N", bor_id, verification)
-        log_error(bor_id, bor_auth) and return nil if bor_auth.nil? or bor_auth.error
+        log_error(bor_id, verification, bor_auth) and return nil if bor_auth.nil? or bor_auth.error
         return bor_auth
       end
-      
-      def log_error bor_id, bor_auth
+
+      def log_error bor_id, verification, bor_auth
         controller.logger.error "Error in #{self.class}. "+
-          "No permissions returned from Aleph bor-auth for user with bor_id #{bor_id}."+
-            "Error: #{(bor_auth.nil?) ? "bor_auth is nil." : bor_auth.error.inspect}"
+          "No permissions returned from Aleph bor-auth for user with bor_id #{bor_id} and verification #{verification}.\n"+
+            "Error: #{(bor_auth.nil?) ? "bor_auth is nil." : bor_auth.error.inspect}\n"+
+              "Response: #{bor_auth.response.inspect}"
       end
       private :log_error
     end
