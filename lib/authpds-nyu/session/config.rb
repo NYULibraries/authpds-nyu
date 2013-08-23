@@ -1,12 +1,6 @@
 module AuthpdsNyu
   module Session
     module Config
-      # Base opensso url
-      def opensso_url(value = nil)
-        rw_config(:opensso_url, value, "https://login.nyu.edu:443/sso")
-      end
-      alias_method :opensso_url=, :opensso_url
-
       # Base aleph url
       def aleph_url(value = nil)
         rw_config(:aleph_url, value, "http://aleph.library.nyu.edu")
