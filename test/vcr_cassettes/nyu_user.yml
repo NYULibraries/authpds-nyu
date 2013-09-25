@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://logindev.library.nyu.edu/pds
+    body:
+      encoding: US-ASCII
+      string: func=get-attribute&attribute=bor_info&calling_system=authpds-nyu&pds_handle=2382013121036414874098332610642
+    headers:
+      Accept:
+      - ! '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 23 Aug 2013 16:26:40 GMT
+      Server:
+      - Apache/2.2.15 (Unix) mod_ssl/2.2.15 OpenSSL/0.9.8n mod_perl/2.0.4 Perl/v5.8.9
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/xml; charset=UTF-8
+    body:
+      encoding: US-ASCII
+      string: <?xml version="1.0" encoding="UTF-8"?><bor-info><id>N12162279</id><exl_id>N12162279</exl_id><barcode>21142224061247</barcode><bor-status>51</bor-status><bor-type>CB</bor-type><expiry-date>20121031</expiry-date><name>Scot
+        Thomas</name><uid>std5</uid><email>std5@nyu.edu</email><email_address>std5@nyu.edu</email_address><institute>NYU</institute><cn>Scot
+        Thomas Dalton</cn><givenname>Scot Thomas</givenname><sn>Dalton</sn><verification>d4465aacaa645f2164908cd4184c09f0</verification><opensso>true</opensso><nyu_shibboleth>true</nyu_shibboleth><entitlements>urn:mace:nyu.edu:entl:its:wikispriv;urn:mace:nyu.edu:entl:its:classes;urn:mace:nyu.edu:entl:its:qualtrics;urn:mace:nyu.edu:entl:lib:eresources;urn:mace:nyu.edu:entl:its:wikispub;urn:mace:nyu.edu:entl:its:webspace;urn:mace:nyu.edu:entl:lib:ideaexchange;urn:mace:nyu.edu:entl:its:projmgmt;urn:mace:nyu.edu:entl:its:files;urn:mace:incommon:entitlement:common:1</entitlements><edupersonentitlement><value>urn:mace:nyu.edu:entl:its:wikispriv</value><value>urn:mace:nyu.edu:entl:its:classes</value><value>urn:mace:nyu.edu:entl:its:qualtrics</value><value>urn:mace:nyu.edu:entl:lib:eresources</value><value>urn:mace:nyu.edu:entl:its:wikispub</value><value>urn:mace:nyu.edu:entl:its:webspace</value><value>urn:mace:nyu.edu:entl:lib:ideaexchange</value><value>urn:mace:nyu.edu:entl:its:projmgmt</value><value>urn:mace:nyu.edu:entl:its:files</value><value>urn:mace:incommon:entitlement:common:1</value></edupersonentitlement><ill-permission>Y</ill-permission><college_code>GA</college_code><college_name>Graduate
+        School of Arts and Science</college_name><dept_code>CSCI</dept_code><dept_name>DIVISION
+        OF LIBRARIES</dept_name><major_code>GAINFOMS</major_code><major>Information
+        Systems</major></bor-info>
+    http_version: 
+  recorded_at: Fri, 23 Aug 2013 16:26:40 GMT
+recorded_with: VCR 2.4.0
