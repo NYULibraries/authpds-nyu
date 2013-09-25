@@ -19,8 +19,6 @@ module AuthpdsNyu
     def self.included(klass)
       klass.class_eval do
         pds_attributes :firstname => "givenname", :lastname => "sn", :email => "email", :primary_institution => "institute"
-        remember_me true
-        remember_me_for 300
         httponly true
         secure true
         login_inaccessible_url "http://library.nyu.edu/errors/login-library-nyu-edu/"
