@@ -12,13 +12,13 @@ Gem::Specification.new do |s|
   s.homepage    = "http://github.com/scotdalton/authpds-nyu"
   s.summary     = "NYU libraries SSO client."
   s.description = "NYU libraries SSO client."
-  s.license = 'MIT'
+  s.license     = 'MIT'
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "require_all", "~> 1.3.1"
-  s.add_dependency "authpds", "~> 1.0.0"
+  s.add_dependency "authpds", "~> 1.1.1"
   s.add_dependency "exlibris-aleph", "~> 1.0.8"
 
   s.add_development_dependency "rake", "~> 10.1.0"
