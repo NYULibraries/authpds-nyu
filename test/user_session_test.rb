@@ -21,7 +21,7 @@ class UserSessionTest < ActiveSupport::TestCase
   test "logout_url" do
     user_session = UserSession.new
     assert_equal(
-      "https://logindev.library.nyu.edu/logout?url=http%3A%2F%2Frailsapp.library.nyu.edu",
+      "https://login.library.edu/logout?url=http%3A%2F%2Frailsapp.library.nyu.edu",
         user_session.logout_url)
   end
 
@@ -45,18 +45,27 @@ class UserSessionTest < ActiveSupport::TestCase
     end
   end
 
-  test "non opensso user" do
-    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NEWSCHOOL }
-    VCR.use_cassette('newschool user') do
+  test "invalid user" do
+    controller.cookies[:PDS_HANDLE] = { :value => INVALID_PDS_HANDLE }
+    VCR.use_cassette('invalid user') do
       assert_nothing_raised do
         user_session = UserSession.find
       end
     end
   end
-  
-  test "opensso user" do
-    controller.cookies[:PDS_HANDLE] = { :value => VALID_PDS_HANDLE_FOR_NYU }
-    VCR.use_cassette('nyu user') do
+
+  test "aleph user" do
+    controller.cookies[:PDS_HANDLE] = { :value => ALEPH_PDS_HANDLE }
+    VCR.use_cassette('aleph user') do
+      assert_nothing_raised do
+        user_session = UserSession.find
+      end
+    end
+  end
+
+  test "shibboleth user" do
+    controller.cookies[:PDS_HANDLE] = { :value => SHIBBOLETH_PDS_HANDLE }
+    VCR.use_cassette('shibboleth user') do
       assert_nothing_raised do
         user_session = UserSession.find
       end

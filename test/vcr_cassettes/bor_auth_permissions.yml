@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://alephstage.library.nyu.edu/X?bor_id=DS89D&library=NYU50&op=bor-auth&sub_library=BOBST&translate=N&verification=TEST
+    uri: http://aleph.library.edu/X?bor_id=DS89D&library=NYU50&op=bor-auth&sub_library=BOBST&translate=N&verification=TEST
     body:
       encoding: US-ASCII
       string: ''
