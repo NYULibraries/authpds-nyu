@@ -12,8 +12,6 @@ module AuthpdsNyu
   # :aleph_default_sublibrary:: Aleph default sublibrary (BOBST)
   #
   module Session
-    include AuthpdsNyu::Session::CoreAttributes
-    include AuthpdsNyu::Session::Aleph
     include AuthpdsNyu::Session::Callbacks
 
     def self.included(klass)
@@ -22,7 +20,6 @@ module AuthpdsNyu
         httponly true
         secure true
         login_inaccessible_url "http://library.nyu.edu/errors/login-library-nyu-edu/"
-        extend AuthpdsNyu::Session::Config
       end
     end
   end
