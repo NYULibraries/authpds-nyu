@@ -13,6 +13,7 @@ module AuthpdsNyu
   #
   module Session
     include AuthpdsNyu::Session::Callbacks
+    include AuthpdsNyu::Session::UrlHandling
 
     def self.included(klass)
       klass.class_eval do
