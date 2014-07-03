@@ -25,26 +25,6 @@ class UserSessionTest < ActiveSupport::TestCase
         user_session.logout_url)
   end
 
-  test "aleph_bor_auth" do
-    user_session = UserSession.new
-    VCR.use_cassette('bor_auth') do
-      bor_auth = user_session.aleph_bor_auth("DS89D", "TEST", "NYU50", "BOBST")
-      assert_equal("89", bor_auth.permissions[:bor_status])
-      assert_equal("CB", bor_auth.permissions[:bor_type])
-      assert_equal("Y", bor_auth.permissions[:hold_on_shelf])
-    end
-  end
-
-  test "aleph_bor_auth_permissions" do
-    user_session = UserSession.new
-    VCR.use_cassette('bor_auth_permissions') do
-      permissions = user_session.aleph_bor_auth_permissions("DS89D", "TEST", "NYU50", "BOBST")
-      assert_equal("89", permissions[:bor_status])
-      assert_equal("CB", permissions[:bor_type])
-      assert_equal("Y", permissions[:hold_on_shelf])
-    end
-  end
-
   test "invalid user" do
     controller.cookies[:PDS_HANDLE] = { :value => INVALID_PDS_HANDLE }
     VCR.use_cassette('invalid user') do
